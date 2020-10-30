@@ -1,5 +1,5 @@
 body {
-    background: url("../images/background-8.jpg");
+    background: #a7b8c9;
     height: 100%;
 }
 
@@ -13,22 +13,46 @@ h1 {
 
 ul {
     display: flex;
-    width: 30vw;
+    width: 25vw;
     flex-direction: row;
     align-content: center;
-    justify-content: space-around;
 }
 
 li {
     list-style: none;
 }
 
+button {
+    margin-right: 5px;
+}
+
+.btn {
+    background: #cae0f4;
+    border: none;
+    height: 30px;
+    border-radius: 8%;
+}
+
 .calendar-container {
     margin: auto;
-    background-color: white;
+    background-color: transparent;
     width: 80vw;
+}
+
+.fc-view-harness {
+    background-color: white;
 }
 
 .fc-header-toolbar {
     background-color: transparent;
+}
+
+a {
+    text-decoration: none;
+    color: #1a252f;
+}
+
+.logout {
+    margin-top: 15px;
+    margin-left: 59vw;
 }
