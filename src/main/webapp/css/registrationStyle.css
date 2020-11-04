@@ -11,11 +11,29 @@ h1 {
     background: white;
     width: 50vw;
     height: 35vw;
-    display: flex;
     margin: auto;
+    padding-top: 1px;
+    display: flex;
+    flex-direction: column;
+}
+
+.registration {
+    width: 200px;
+    margin: 10px auto;
+    height: 20px;
+}
+
+button {
+    width: 100px;
+    margin: 10px auto;
+}
+
+nav {
+    margin-bottom: 50px;
 }
 
 p {
     font-size: 45px;
     margin: 30px auto;
+    color: #56687a;
 }
