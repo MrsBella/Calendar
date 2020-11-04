@@ -1,0 +1,21 @@
+body {
+    background: #a7b8c9;
+}
+
+h1 {
+    margin-left: 35px;
+    margin-top: 35px;
+}
+
+.container {
+    background: white;
+    width: 50vw;
+    height: 35vw;
+    display: flex;
+    margin: auto;
+}
+
+p {
+    font-size: 45px;
+    margin: 30px auto;
+}
