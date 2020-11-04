@@ -3,8 +3,11 @@ body {
     height: 100%;
 }
 
-nav {
+.navigation {
     display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-left: 8px;
 }
 
 h1 {

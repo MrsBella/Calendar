@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <title>Home</title>
     <link href='fullcalendar/main.min.css' rel='stylesheet'/>
+    <link rel="stylesheet" href="./css/homeStyle.css">
     <script src='fullcalendar/main.min.js'></script>
-    <link rel="stylesheet" href="css/homeStyle.css">
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const calendarEl = document.getElementById('calendar');
@@ -16,14 +16,13 @@
                     center: 'title',
                     right: 'dayGridMonth,dayGridWeek,timeGridDay'
                 }
-
             });
             calendar.render();
         });
     </script>
 </head>
 <body>
-<nav>
+<nav class="navigation">
     <h1>LOGO</h1>
     <ul>
         <li>
