@@ -7,7 +7,7 @@ h1 {
     margin-top: 35px;
 }
 
-.container {
+.container,form {
     background: white;
     width: 50vw;
     height: 35vw;
