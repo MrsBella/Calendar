@@ -1,0 +1,47 @@
+body {
+    background: #a7b8c9;
+}
+
+h1 {
+    margin-left: 35px;
+    margin-top: 35px;
+    font-family: 'Dancing Script', cursive;
+    font-size: 50px;
+    color: #1a252f;
+}
+
+.calendar {
+    margin: 100px auto;
+    font-family: 'Dancing Script', cursive;
+    font-size: 90px;
+    color: #1a252f;
+}
+
+.container {
+    background: #a7b8c9;
+    width: 50vw;
+    height: 35vw;
+    margin: 50px auto;
+    padding-top: 1px;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-button {
+    background: #cae0f4;
+    font-family: Purisa;
+}
+
+.registration {
+    width: 200px;
+    margin: 5px auto;
+    height: 30px;
+}
+
+p {
+    margin: 30px auto;
+    font-size: 45px;
+    color: #56687a;
+    font-family: 'Dancing Script', cursive;
+}
+

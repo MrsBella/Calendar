@@ -1,20 +1,16 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Rejestracja</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/registrationStyle.css">
-</head>
+<%@ include file="/head.jsp"%>
+
 <body>
 <nav>
-    <h1>LOGO</h1>
+    <h1>Calendar</h1>
 </nav>
-<div class="container">
+<div class="container bg-white">
     <p>
         Rejestracja
     </p>
-    <form:form action="/user/form" autocomplete="off" modelAttribute="user">
+    <form:form cssClass="d-flex flex-column justify-content-center" action="/user/form" autocomplete="false" modelAttribute="user">
 
         <form:input path="firstName" class="registration" placeholder="imię"/> <br>
         <form:input path="lastName" class="registration" placeholder="nazwisko"/> <br>
@@ -22,7 +18,7 @@
         <form:input path="email" class="registration" placeholder="email"/> <br>
         <form:password path="password" class="registration" placeholder="hasło"/> <br>
         <form:password path="" class="registration" placeholder="powtórz hasło"/> <br>
-        <button type="submit">Zarejestruj</button>
+        <button class="btn btn-lg main-button" type="submit">Zarejestruj</button>
     </form:form>
 </div>
 </body>
