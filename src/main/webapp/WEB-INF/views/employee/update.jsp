@@ -8,14 +8,15 @@
 </nav>
 <div class="container bg-white">
     <p>
-        Dodawanie pracownika
+        Edycja pracownika
     </p>
     <form:form cssClass="d-flex flex-column justify-content-center" action="/employee/form" modelAttribute="employee">
         <form:hidden path="id"/>
 
         <form:input path="firstName" class="registration" placeholder="imię"/> <br>
         <form:input path="lastName" class="registration" placeholder="nazwisko"/> <br>
-        <button class="btn btn-lg main-button" type="submit">Dodaj</button>
+
+        <button class="btn btn-lg main-button" type="submit">Zapisz zmiany</button>
     </form:form>
 </div>
 </body>
