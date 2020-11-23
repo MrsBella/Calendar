@@ -2,6 +2,8 @@ package pl.coderslab.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "customers")
@@ -23,6 +25,9 @@ public class Customer {
     private int phoneNumber;
 
     private String note;
+
+    @ManyToMany(mappedBy = "customers")
+    private List<Employee> employees = new ArrayList<>();
 
     public Customer() {
     }

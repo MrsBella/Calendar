@@ -1,6 +1,8 @@
 package pl.coderslab.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "employees")
@@ -12,6 +14,12 @@ public class Employee {
 
     private String firstName;
     private String lastName;
+
+    @ManyToMany
+    @JoinTable(name = "employees_customers",
+    joinColumns = @JoinColumn(name = "employee_id"),
+    inverseJoinColumns = @JoinColumn(name = "customer_id"))
+    private List<Customer>customers = new ArrayList<>();
 
     public Employee() {
     }
