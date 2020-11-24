@@ -20,6 +20,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import pl.coderslab.converter.CustomerConverter;
+import pl.coderslab.converter.EmployeeConverter;
 import pl.coderslab.converter.TreatmentConverter;
 
 import javax.persistence.EntityManagerFactory;
@@ -47,6 +48,7 @@ public class AppConfig implements WebMvcConfigurer {
     public void addFormatters(FormatterRegistry registry) {
         registry.addConverter(treatmentConverter());
         registry.addConverter(customerConverter());
+        registry.addConverter(employeeConverter());
     }
 
     @Bean
@@ -77,6 +79,11 @@ public class AppConfig implements WebMvcConfigurer {
     @Bean
     public CustomerConverter customerConverter() {
         return new CustomerConverter();
+    }
+
+    @Bean
+    public EmployeeConverter employeeConverter() {
+        return new EmployeeConverter();
     }
 
     @Bean(name = "localeResolver")
