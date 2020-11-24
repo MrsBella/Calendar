@@ -32,6 +32,9 @@ public class Customer {
     @OneToMany(mappedBy = "treatment", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<CustomerTreatment> customerTreatments = new ArrayList<>();
 
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<CustomerProduct> customerProducts = new ArrayList<>();
+
     public Customer() {
     }
 
