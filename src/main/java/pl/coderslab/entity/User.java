@@ -27,8 +27,7 @@ public class User {
     @Size(max = 60)
     private String password;
 
-    public User(Long id, String firstName, String lastName, String companyName, String email, String password) {
-        this.id = id;
+    public User(String firstName, String lastName, String companyName, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.companyName = companyName;

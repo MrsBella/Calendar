@@ -35,9 +35,8 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(Long id, @NotNull String firstName, @NotNull String lastName, String email,
+    public Customer(@NotNull String firstName, @NotNull String lastName, String email,
                     @NotNull int phoneNumber, String note, List<Employee> employees) {
-        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

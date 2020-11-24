@@ -27,8 +27,7 @@ public class Treatment {
     public Treatment() {
     }
 
-    public Treatment(Long id, @NotNull String name, @NotNull double price, String description) {
-        this.id = id;
+    public Treatment(@NotNull String name, @NotNull double price, String description) {
         this.name = name;
         this.price = price;
         this.description = description;
