@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.entity.Customer;
-import pl.coderslab.entity.Employee;
 import pl.coderslab.repository.CustomerRepository;
 
 import javax.persistence.EntityNotFoundException;

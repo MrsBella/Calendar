@@ -29,7 +29,28 @@ public class Customer {
     @ManyToMany(mappedBy = "customers")
     private List<Employee> employees = new ArrayList<>();
 
+    @OneToMany(mappedBy = "treatment", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<CustomerTreatment> customerTreatments = new ArrayList<>();
+
+//    @ManyToMany
+//    @JoinTable(name = "customers_treatments",
+//            joinColumns = @JoinColumn(name = "customer_id"),
+//            inverseJoinColumns = @JoinColumn(name = "treatment_id"))
+//    private List<Treatment> treatments = new ArrayList<>();
+
     public Customer() {
+    }
+
+    public Customer(Long id, @NotNull String firstName, @NotNull String lastName, String email,
+                    @NotNull int phoneNumber, String note, List<Employee> employees) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.note = note;
+        this.employees = employees;
+    //    this.customerTreatments = customerTreatments;
     }
 
     public Long getId() {
@@ -79,4 +100,20 @@ public class Customer {
     public void setNote(String note) {
         this.note = note;
     }
+
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
+    }
+
+//    public List<Treatment> getTreatments() {
+//        return treatments;
+//    }
+//
+//    public void setTreatments(List<Treatment> treatments) {
+//        this.treatments = treatments;
+//    }
 }

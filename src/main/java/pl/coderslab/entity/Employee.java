@@ -17,9 +17,9 @@ public class Employee {
 
     @ManyToMany
     @JoinTable(name = "employees_customers",
-    joinColumns = @JoinColumn(name = "employee_id"),
-    inverseJoinColumns = @JoinColumn(name = "customer_id"))
-    private List<Customer>customers = new ArrayList<>();
+            joinColumns = @JoinColumn(name = "employee_id"),
+            inverseJoinColumns = @JoinColumn(name = "customer_id"))
+    private List<Customer> customers = new ArrayList<>();
 
     public Employee() {
     }
@@ -52,5 +52,13 @@ public class Employee {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public List<Customer> getCustomers() {
+        return customers;
+    }
+
+    public void setCustomers(List<Customer> customers) {
+        this.customers = customers;
     }
 }
