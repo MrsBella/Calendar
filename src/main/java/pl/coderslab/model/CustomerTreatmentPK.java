@@ -13,5 +13,19 @@ public class CustomerTreatmentPK implements Serializable {
     @Column(name = "treatment_id")
     private Long treatment_id;
 
+    public Long getCustomer_id() {
+        return customer_id;
+    }
 
+    public void setCustomer_id(Long customer_id) {
+        this.customer_id = customer_id;
+    }
+
+    public Long getTreatment_id() {
+        return treatment_id;
+    }
+
+    public void setTreatment_id(Long treatment_id) {
+        this.treatment_id = treatment_id;
+    }
 }
