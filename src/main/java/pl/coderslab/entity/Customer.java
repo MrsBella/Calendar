@@ -32,12 +32,6 @@ public class Customer {
     @OneToMany(mappedBy = "treatment", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<CustomerTreatment> customerTreatments = new ArrayList<>();
 
-//    @ManyToMany
-//    @JoinTable(name = "customers_treatments",
-//            joinColumns = @JoinColumn(name = "customer_id"),
-//            inverseJoinColumns = @JoinColumn(name = "treatment_id"))
-//    private List<Treatment> treatments = new ArrayList<>();
-
     public Customer() {
     }
 
@@ -50,7 +44,6 @@ public class Customer {
         this.phoneNumber = phoneNumber;
         this.note = note;
         this.employees = employees;
-    //    this.customerTreatments = customerTreatments;
     }
 
     public Long getId() {
@@ -109,11 +102,11 @@ public class Customer {
         this.employees = employees;
     }
 
-//    public List<Treatment> getTreatments() {
-//        return treatments;
-//    }
-//
-//    public void setTreatments(List<Treatment> treatments) {
-//        this.treatments = treatments;
-//    }
+    public List<CustomerTreatment> getCustomerTreatments() {
+        return customerTreatments;
+    }
+
+    public void setCustomerTreatments(List<CustomerTreatment> customerTreatments) {
+        this.customerTreatments = customerTreatments;
+    }
 }

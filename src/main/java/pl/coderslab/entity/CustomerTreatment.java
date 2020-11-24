@@ -27,4 +27,36 @@ public class CustomerTreatment implements Serializable {
 
     public CustomerTreatment() {
     }
+
+    public CustomerTreatmentPK getId() {
+        return id;
+    }
+
+    public void setId(CustomerTreatmentPK id) {
+        this.id = id;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Treatment getTreatment() {
+        return treatment;
+    }
+
+    public void setTreatment(Treatment treatment) {
+        this.treatment = treatment;
+    }
+
+    public LocalDateTime getLocalDateTime() {
+        return localDateTime;
+    }
+
+    public void setLocalDateTime(LocalDateTime localDateTime) {
+        this.localDateTime = localDateTime;
+    }
 }

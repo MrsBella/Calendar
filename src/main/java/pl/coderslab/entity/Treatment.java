@@ -21,9 +21,6 @@ public class Treatment {
 
     private String description;
 
-//    @ManyToMany(mappedBy = "treatments")
-//    private List<Customer> customers = new ArrayList<>();
-
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<CustomerTreatment> customerTreatments = new ArrayList<>();
 
@@ -68,12 +65,12 @@ public class Treatment {
     public void setDescription(String description) {
         this.description = description;
     }
-//
-//    public List<Customer> getCustomers() {
-//        return customers;
-//    }
-//
-//    public void setCustomers(List<Customer> customers) {
-//        this.customers = customers;
-//    }
+
+    public List<CustomerTreatment> getCustomerTreatments() {
+        return customerTreatments;
+    }
+
+    public void setCustomerTreatments(List<CustomerTreatment> customerTreatments) {
+        this.customerTreatments = customerTreatments;
+    }
 }
