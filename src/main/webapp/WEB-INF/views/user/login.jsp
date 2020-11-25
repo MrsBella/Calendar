@@ -9,24 +9,11 @@
 </nav>
 <div class="container bg-white">
     <p>
-        Rejestracja
+        Logowanie
     </p>
-    <form:form cssClass="d-flex flex-column justify-content-center" action="/user/form"
-               modelAttribute="user">
+    <form:form cssClass="d-flex flex-column justify-content-center" action="/user/login" modelAttribute="user">
         <form:hidden path="id"/>
 
-        <div class="form-group row">
-            <form:label class="col-2 col-form-label mr-1" path="firstName">Imię: </form:label>
-            <form:input path="firstName" class="registration col-9" placeholder="imię"/> <br>
-        </div>
-        <div class="form-group row">
-            <form:label class="col-2 col-form-label mr-1" path="lastName">Nazwisko: </form:label>
-            <form:input path="lastName" class="registration col-9" placeholder="nazwisko"/> <br>
-        </div>
-        <div class="form-group row">
-            <form:label class="col-2 col-form-label mr-1" path="companyName">Nazwa firmy: </form:label>
-            <form:input path="companyName" class="registration col-9" placeholder="nazwa firmy"/> <br>
-        </div>
         <div class="form-group row">
             <form:label class="col-2 col-form-label mr-1" path="email">Email: </form:label>
             <form:input path="email" class="registration col-9" placeholder="email"/> <br>
@@ -39,7 +26,7 @@
             <form:label class="col-2 col-form-label mr-1" path="">Powtórz hasło: </form:label>
             <form:password path="" class="registration col-9" placeholder="powtórz hasło"/> <br>
         </div>
-        <button class="btn btn-lg main-button" type="submit">Zarejestruj</button>
+        <button class="btn btn-lg main-button reg" type="submit">Zaloguj</button>
     </form:form>
 </div>
 </body>

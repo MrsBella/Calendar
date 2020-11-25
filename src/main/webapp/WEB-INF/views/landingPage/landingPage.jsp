@@ -8,7 +8,7 @@
         <a class="badge" href="/user/form">
             <button class="btn btn-lg main-button">Zarejestruj</button>
         </a>
-        <a class="badge" href="##">
+        <a class="badge" href="/user/login">
             <button class="btn btn-lg main-button ml-5">Zaloguj</button>
         </a>
     </div>

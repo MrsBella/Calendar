@@ -6,15 +6,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import pl.coderslab.entity.User;
 import pl.coderslab.repository.UserRepository;
 
 import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
+import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.Optional;
 
 @Controller
@@ -36,13 +35,17 @@ public class UserController {
         return "user/form";
     }
 
-    @PostMapping("form")
+    @PostMapping("/form")
     public String processForm(@Valid User user, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return "user/form";
+        if ((userRepository.findByEmail(user.getEmail())) == null) {
+            if (bindingResult.hasErrors()) {
+                return "user/form";
+            } else {
+                user.setPassword(passwordEncoder.encode(user.getPassword()));
+                userRepository.save(user);
+            }
         } else {
-            user.setPassword(passwordEncoder.encode(user.getPassword()));
-            userRepository.save(user);
+            return "user/exception";
         }
         return "user/hello";
     }
@@ -54,5 +57,21 @@ public class UserController {
         User foundUser = user.orElseThrow(() -> new EntityNotFoundException("User not found"));
         model.addAttribute("user", foundUser);
         return "user/update";
+    }
+
+    @GetMapping("/login")
+    public String login(Model model) {
+        model.addAttribute("user", new User());
+        return "user/login";
+    }
+
+    @PostMapping("/login")
+    public String processLogin(@Valid User user, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "user/login";
+        } else {
+
+        }
+        return "user/hello";
     }
 }
