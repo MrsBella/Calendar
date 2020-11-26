@@ -21,7 +21,7 @@ public class Treatment {
 
     private String description;
 
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "treatment")
     private List<CustomerTreatment> customerTreatments = new ArrayList<>();
 
     public Treatment() {

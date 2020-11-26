@@ -29,10 +29,10 @@ public class Customer {
     @ManyToMany(mappedBy = "customers")
     private List<Employee> employees = new ArrayList<>();
 
-    @OneToMany(mappedBy = "treatment", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "customer")
     private List<CustomerTreatment> customerTreatments = new ArrayList<>();
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "product")
     private List<CustomerProduct> customerProducts = new ArrayList<>();
 
     public Customer() {
@@ -110,5 +110,13 @@ public class Customer {
 
     public void setCustomerTreatments(List<CustomerTreatment> customerTreatments) {
         this.customerTreatments = customerTreatments;
+    }
+
+    public List<CustomerProduct> getCustomerProducts() {
+        return customerProducts;
+    }
+
+    public void setCustomerProducts(List<CustomerProduct> customerProducts) {
+        this.customerProducts = customerProducts;
     }
 }

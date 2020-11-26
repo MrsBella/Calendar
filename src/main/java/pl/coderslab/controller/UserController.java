@@ -12,8 +12,6 @@ import pl.coderslab.repository.UserRepository;
 
 import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
-import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.Optional;
 
 @Controller

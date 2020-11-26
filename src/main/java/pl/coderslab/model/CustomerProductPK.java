@@ -2,7 +2,6 @@ package pl.coderslab.model;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.persistence.OneToMany;
 import java.io.Serializable;
 
 @Embeddable

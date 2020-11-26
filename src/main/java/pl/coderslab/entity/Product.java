@@ -18,7 +18,7 @@ public class Product {
 
     private double price;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "product")
     private List<CustomerProduct> customerProducts = new ArrayList<>();
 
     public Product() {
@@ -60,5 +60,13 @@ public class Product {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public List<CustomerProduct> getCustomerProducts() {
+        return customerProducts;
+    }
+
+    public void setCustomerProducts(List<CustomerProduct> customerProducts) {
+        this.customerProducts = customerProducts;
     }
 }
