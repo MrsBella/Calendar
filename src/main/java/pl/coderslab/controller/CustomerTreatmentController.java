@@ -13,6 +13,7 @@ import pl.coderslab.repository.CustomerTreatmentRepository;
 import pl.coderslab.repository.TreatmentRepository;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Controller
 @RequestMapping("/customerTreatment")
@@ -23,7 +24,8 @@ public class CustomerTreatmentController {
     private final TreatmentRepository treatmentRepository;
     private final CustomerTreatmentRepository customerTreatmentRepository;
 
-    public CustomerTreatmentController(CustomerRepository customerRepository, TreatmentRepository treatmentRepository, CustomerTreatmentRepository customerTreatmentRepository) {
+    public CustomerTreatmentController(CustomerRepository customerRepository, TreatmentRepository treatmentRepository,
+                                       CustomerTreatmentRepository customerTreatmentRepository) {
         this.customerRepository = customerRepository;
         this.treatmentRepository = treatmentRepository;
         this.customerTreatmentRepository = customerTreatmentRepository;
@@ -38,10 +40,17 @@ public class CustomerTreatmentController {
         LocalDateTime localDateTime = LocalDateTime.now();
 
         CustomerTreatment customerTreatment = new CustomerTreatment(customer, treatment, localDateTime);
-
         customerTreatmentRepository.save(customerTreatment);
-
-        return "";
+        return "user/hello";
     }
 
+    @GetMapping("/findById")
+    public String findTreatmentsByCustomerId() {
+
+        List<CustomerTreatment> customerTreatments = customerTreatmentRepository.findAllByCustomerId(1L);
+
+        System.out.println(customerTreatments.size());
+
+        return "user/hello";
+    }
 }
