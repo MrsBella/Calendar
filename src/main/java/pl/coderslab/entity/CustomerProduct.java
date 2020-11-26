@@ -1,26 +1,23 @@
 package pl.coderslab.entity;
 
-import pl.coderslab.model.CustomerProductPK;
+import pl.coderslab.model.CustomerProductId;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "customers_products")
-public class CustomerProduct implements Serializable {
+@IdClass(CustomerProductId.class)
+public class CustomerProduct {
 
-    @EmbeddedId
-    private CustomerProductPK id;
-
+    @Id
     @ManyToOne
-    @MapsId("customer_id")
-    @JoinColumn(name = "customer_id")
+    @JoinColumn(name = "customer_id", referencedColumnName = "id")
     private Customer customer;
 
+    @Id
     @ManyToOne
-    @MapsId("product_id")
-    @JoinColumn(name = "product_id")
+    @JoinColumn(name = "product_id", referencedColumnName = "id")
     private Product product;
 
     private LocalDateTime localDateTime;
@@ -28,12 +25,10 @@ public class CustomerProduct implements Serializable {
     public CustomerProduct() {
     }
 
-    public CustomerProductPK getId() {
-        return id;
-    }
-
-    public void setId(CustomerProductPK id) {
-        this.id = id;
+    public CustomerProduct(Customer customer, Product product, LocalDateTime localDateTime) {
+        this.customer = customer;
+        this.product = product;
+        this.localDateTime = localDateTime;
     }
 
     public Customer getCustomer() {

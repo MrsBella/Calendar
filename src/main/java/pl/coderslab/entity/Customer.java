@@ -32,7 +32,7 @@ public class Customer {
     @OneToMany(mappedBy = "customer")
     private List<CustomerTreatment> customerTreatments = new ArrayList<>();
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "customer")
     private List<CustomerProduct> customerProducts = new ArrayList<>();
 
     public Customer() {
