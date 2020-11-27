@@ -1,4 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ include file="/head.jsp" %>
 
@@ -11,6 +12,13 @@
     <p>
         Logowanie
     </p>
+    <c:if test="${not empty msg}">
+        <div class="alert alert-danger" role="alert">
+                ${msg}
+        </div>
+    </c:if>
+
+
     <form:form cssClass="d-flex flex-column justify-content-center" action="/user/login" modelAttribute="user">
         <form:hidden path="id"/>
 
@@ -22,11 +30,7 @@
             <form:label class="col-2 col-form-label mr-1" path="password">Hasło: </form:label>
             <form:password path="password" class="registration col-9" placeholder="hasło"/> <br>
         </div>
-        <div class="form-group row">
-            <form:label class="col-2 col-form-label mr-1" path="">Powtórz hasło: </form:label>
-            <form:password path="" class="registration col-9" placeholder="powtórz hasło"/> <br>
-        </div>
-        <button class="btn btn-lg main-button reg" type="submit">Zaloguj</button>
+        <button class="btn btn-lg main-button" type="submit">Zaloguj</button>
     </form:form>
 </div>
 </body>

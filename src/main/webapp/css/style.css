@@ -1,5 +1,6 @@
 body {
     background: #a7b8c9;
+    height: 100%;
 }
 
 h1 {
@@ -8,6 +9,28 @@ h1 {
     font-family: 'Dancing Script', cursive;
     font-size: 50px;
     color: #1a252f;
+}
+
+.list {
+    list-style: none;
+    margin-right: 10px;
+}
+
+.calendar-container {
+    margin: auto;
+    background-color: transparent;
+    width: 80vw;
+}
+
+.fc-view-harness {
+    background-color: white;
+}
+
+.menu {
+    display: flex;
+    width: 65vw;
+    flex-direction: row;
+    align-content: flex-start;
 }
 
 .calendar {
@@ -48,8 +71,17 @@ p {
 nav {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
 }
 
 .end {
     margin-left: 93rem;
+}
+
+.error {
+    color: red;
+}
+
+a{
+    color: #4a2529;
 }

@@ -1,6 +1,7 @@
 package pl.coderslab.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -22,10 +23,18 @@ public class User {
     private String companyName;
 
     @NotNull
+    @Email
     private String email;
 
     @Size(max = 60)
+    @NotNull
     private String password;
+
+    @Transient
+    private String repeatPassword;
+
+    @Transient
+    private boolean loggedIn = false;
 
     public User(String firstName, String lastName, String companyName, String email, String password) {
         this.firstName = firstName;
@@ -84,5 +93,30 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getRepeatPassword() {
+        return repeatPassword;
+    }
+
+    public void setRepeatPassword(String repeatPassword) {
+        this.repeatPassword = repeatPassword;
+    }
+
+    public boolean isLoggedIn() {
+        return loggedIn;
+    }
+
+    public void setLoggedIn(boolean loggedIn) {
+        this.loggedIn = loggedIn;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", companyName='" + companyName + '\'' +
+                ", email='" + email + ", loggedIn=" + loggedIn;
     }
 }
