@@ -93,5 +93,10 @@
             <version>2.3.5.RELEASE</version>
             <optional>true</optional>
         </dependency>
+        <dependency>
+            <groupId>org.passay</groupId>
+            <artifactId>passay</artifactId>
+            <version>1.6.0</version>
+        </dependency>
     </dependencies>
 </project>

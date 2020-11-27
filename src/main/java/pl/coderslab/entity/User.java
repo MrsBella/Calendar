@@ -1,9 +1,25 @@
 package pl.coderslab.entity;
 
+import pl.coderslab.annotation.PasswordValueMatch;
+
 import javax.persistence.*;
+import javax.validation.Constraint;
+import javax.validation.Payload;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.lang.annotation.Documented;
+import java.lang.annotation.Retention;
+
+
+@PasswordValueMatch.List({
+        @PasswordValueMatch(
+                field = "password",
+                fieldMatch = "repeatPassword",
+                message = "Passwords do not match!"
+        )
+})
+
 
 @Entity
 @Table(name = "users")

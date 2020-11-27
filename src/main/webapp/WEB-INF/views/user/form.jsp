@@ -31,8 +31,8 @@
             <form:label class="col-2 col-form-label mr-1" path="companyName">Nazwa firmy: </form:label>
             <form:input path="companyName" class="registration col-9" placeholder="nazwa firmy"/> <br>
             <form:errors path="companyName" cssClass="error"/>
-
         </div>
+
         <div class="form-group row">
             <form:label class="col-2 col-form-label mr-1" path="email">Email: </form:label>
             <form:input path="email" class="registration col-9" placeholder="email"/> <br>
@@ -43,8 +43,8 @@
             <form:label class="col-2 col-form-label mr-1" path="password">Hasło: </form:label>
             <form:password path="password" class="registration col-9" placeholder="hasło"/> <br>
             <form:errors path="password" cssClass="error"/>
-
         </div>
+
         <div class="form-group row">
             <form:label class="col-2 col-form-label mr-1" path="">Powtórz hasło: </form:label>
             <form:password path="repeatPassword" class="registration col-9" placeholder="powtórz hasło"/> <br>
