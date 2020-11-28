@@ -1,4 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ include file="/head.jsp" %>
 
@@ -32,6 +33,12 @@
             <form:input path="companyName" class="registration col-9" placeholder="nazwa firmy"/> <br>
             <form:errors path="companyName" cssClass="error"/>
         </div>
+
+        <c:if test="${not empty msg}">
+            <div class="alert alert-danger" role="alert">
+                ${msg}
+            </div>
+        </c:if>
 
         <div class="form-group row">
             <form:label class="col-2 col-form-label mr-1" path="email">Email: </form:label>

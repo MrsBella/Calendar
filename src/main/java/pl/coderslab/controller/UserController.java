@@ -38,7 +38,7 @@ public class UserController {
     }
 
     @PostMapping("/form")
-    public String processForm(@Valid User user, BindingResult bindingResult) {
+    public String processForm(@Valid User user, BindingResult bindingResult, Model model) {
         if ((userRepository.findByEmail(user.getEmail())) == null) {
             if (bindingResult.hasErrors()) {
                 return "user/form";
@@ -47,7 +47,8 @@ public class UserController {
                 userRepository.save(user);
             }
         } else {
-            return "user/exception";
+            model.addAttribute("msg", "Email already exists!");
+            return "user/form";
         }
         return "user/hello";
     }
@@ -68,7 +69,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String processLogin(User user, BindingResult bindingResult, Model model, HttpSession session) {
+    public String processLogin(User user, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
             return "user/login";

@@ -3,14 +3,9 @@ package pl.coderslab.entity;
 import pl.coderslab.annotation.PasswordValueMatch;
 
 import javax.persistence.*;
-import javax.validation.Constraint;
-import javax.validation.Payload;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.lang.annotation.Documented;
-import java.lang.annotation.Retention;
-
 
 @PasswordValueMatch.List({
         @PasswordValueMatch(
@@ -19,7 +14,6 @@ import java.lang.annotation.Retention;
                 message = "Passwords do not match!"
         )
 })
-
 
 @Entity
 @Table(name = "users")
@@ -30,12 +24,15 @@ public class User {
     private Long id;
 
     @NotNull
+    @Size(min = 3, max = 60)
     private String firstName;
 
     @NotNull
+    @Size(min = 3, max = 60)
     private String lastName;
 
     @NotNull
+    @Size(min = 2, max = 120)
     private String companyName;
 
     @NotNull
