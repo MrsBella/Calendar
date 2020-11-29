@@ -2,7 +2,7 @@
 <%@ include file="/head.jsp" %>
 
 <body>
-<div class="container">
+<div class="container main-container">
     <div class="calendar">Witaj w Calendar!</div>
     <div class="d-flex flex-row justify-content-center">
         <a class="badge" href="/user/form">

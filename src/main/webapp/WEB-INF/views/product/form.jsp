@@ -13,9 +13,9 @@
     <form:form cssClass="d-flex flex-column justify-content-center" action="/product/form" modelAttribute="product">
         <form:hidden path="id"/>
 
-        <form:input path="name" class="registration" placeholder="nazwa"/> <br>
-        <form:input path="capacity" class="registration" placeholder="pojemność"/> <br>
-        <form:input path="price" class="registration" placeholder="cena"/> <br>
+        <form:input path="name" class="col-9" placeholder="nazwa"/> <br>
+        <form:input path="capacity" class="col-9" placeholder="pojemność"/> <br>
+        <form:input path="price" class="col-9" placeholder="cena"/> <br>
         <button class="btn btn-lg main-button" type="submit">Dodaj</button>
     </form:form>
 </div>

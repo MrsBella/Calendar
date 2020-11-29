@@ -1,12 +1,25 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<html>
-<head>
-    <title>Treatment</title>
-</head>
+<%@ include file="/head.jsp" %>
+
 <body>
-Czy na pewno chcesz usunać zabieg?
-<a href="/treatment/delete/${id}">Potwierdź</a><br/>
-<a href="/treatment/list">Anuluj</a>
+<nav>
+    <h1>Calendar</h1>
+    <a href="/treatment/list">
+        <button class="btn btn-lg main-button mt-4 mr-3">Powrót</button>
+    </a>
+</nav>
+<div class="container bg-white main-container">
+    <p>
+        Czy na pewno chcesz usunać zabieg?
+    </p>
+    <a href="/treatment/delete/${id}">
+        <button class="btn btn-lg main-button mt-4 mr-3">Potwierdź</button>
+    </a><br/>
+    <a href="/treatment/list">
+        <button class="btn btn-lg main-button mt-4 mr-3">Anuluj</button>
+
+    </a>
+</div>
 </body>
 </html>

@@ -3,32 +3,32 @@
 <%@ include file="/head.jsp" %>
 
 <body>
-<pre>
-    ${user}
-    sesja:
-    ${sessionScope}
-</pre>
+<%--<pre>--%>
+<%--    ${user}--%>
+<%--    sesja:--%>
+<%--    ${sessionScope}--%>
+<%--</pre>--%>
 <nav>
     <h1>Calendar</h1>
-    <ul class="menu p-1">
+    <ul class="menu pt-4">
         <li class="list">
-            <a href="##">
+            <a href="/customer/list">
                 <button class="btn btn-lg main-button">Klienci</button>
             </a>
         </li>
         <li class="list">
-            <a href="###">
-                <button class="btn btn-lg main-button">Usługi</button>
+            <a href="/treatment/list">
+                <button class="btn btn-lg main-button">Zabiegi</button>
             </a>
         </li>
         <li class="list">
-            <a href="##">
+            <a href="/employee/list">
                 <button class="btn btn-lg main-button">Pracownicy</button>
             </a>
         </li>
     </ul>
     <a href="/user/login">
-        <button class="btn btn-lg main-button mt-1">Wyloguj</button>
+        <button class="btn btn-lg main-button mt-4 mr-3">Wyloguj</button>
     </a>
 </nav>
 <div class="calendar-container">

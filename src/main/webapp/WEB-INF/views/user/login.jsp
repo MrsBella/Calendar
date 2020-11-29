@@ -8,7 +8,7 @@
     <h1>Calendar</h1>
     <button class="btn end"><a class="btn btn-lg main-button" href="/">Powrót</a></button>
 </nav>
-<div class="container bg-white">
+<div class="container bg-white main-container">
     <p>
         Logowanie
     </p>
@@ -24,11 +24,11 @@
 
         <div class="form-group row">
             <form:label class="col-2 col-form-label mr-1" path="email">Email: </form:label>
-            <form:input path="email" class="registration col-9" placeholder="email"/> <br>
+            <form:input path="email" class="col-9" placeholder="email"/> <br>
         </div>
         <div class="form-group row">
             <form:label class="col-2 col-form-label mr-1" path="password">Hasło: </form:label>
-            <form:password path="password" class="registration col-9" placeholder="hasło"/> <br>
+            <form:password path="password" class="col-9" placeholder="hasło"/> <br>
         </div>
         <button class="btn btn-lg main-button" type="submit">Zaloguj</button>
     </form:form>

@@ -28,7 +28,7 @@ h1 {
 
 .menu {
     display: flex;
-    width: 65vw;
+    width: 75vw;
     flex-direction: row;
     align-content: flex-start;
 }
@@ -40,11 +40,11 @@ h1 {
     color: #1a252f;
 }
 
-.container {
+.main-container {
     background: #a7b8c9;
     width: 50vw;
     height: 35vw;
-    margin: 50px auto;
+    margin: auto;
     padding-top: 1px;
     display: flex;
     flex-direction: column;
@@ -55,10 +55,6 @@ h1 {
     font-family: Purisa;
     width: 200px;
     margin: 0 auto;
-}
-
-.registration {
-    height: 30px;
 }
 
 p {
