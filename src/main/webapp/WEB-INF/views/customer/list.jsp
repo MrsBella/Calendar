@@ -34,7 +34,8 @@
                 <td>${customer.phoneNumber}</td>
                 <td>${customer.note}</td>
                 <th>
-                    <a href="/customer/form/${customer.id}">Edytuj</a>
+                    <a class="mr-3" href="/customer/form/${customer.id}">Edytuj</a>
+                    <a href="/customerTreatment/findById/${customer.id}">Pokaż</a>
                 </th>
             </tr>
         </c:forEach>

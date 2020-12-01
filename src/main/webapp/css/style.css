@@ -64,6 +64,10 @@ p {
     font-family: 'Dancing Script', cursive;
 }
 
+.client {
+    font-family: Arial;
+}
+
 nav {
     display: flex;
     flex-direction: row;

@@ -14,12 +14,15 @@
 </nav>
 <div class="container bg-white">
     <table class="table">
+        <thead>
         <tr>
             <th>Id</th>
             <th>Nazwa</th>
             <th>Cena</th>
             <th>Opis</th>
         </tr>
+        </thead>
+        <tbody>
         <c:forEach items="${treatments}" var="treatment">
             <tr>
                 <td>${treatment.id}</td>
@@ -35,6 +38,7 @@
 <%--                </th>--%>
             </tr>
         </c:forEach>
+        </tbody>
     </table>
 </div>
 </body>

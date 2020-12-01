@@ -22,6 +22,11 @@
             </a>
         </li>
         <li class="list">
+            <a href="/product/list">
+                <button class="btn btn-lg main-button">Produkty</button>
+            </a>
+        </li>
+        <li class="list">
             <a href="/employee/list">
                 <button class="btn btn-lg main-button">Pracownicy</button>
             </a>
