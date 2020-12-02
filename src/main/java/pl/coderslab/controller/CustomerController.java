@@ -1,5 +1,6 @@
 package pl.coderslab.controller;
 
+import org.hibernate.Hibernate;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -9,7 +10,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.entity.Customer;
+import pl.coderslab.entity.CustomerProduct;
+import pl.coderslab.entity.CustomerTreatment;
+import pl.coderslab.repository.CustomerProductRepository;
 import pl.coderslab.repository.CustomerRepository;
+import pl.coderslab.repository.CustomerTreatmentRepository;
 
 import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
@@ -21,9 +26,13 @@ import java.util.Optional;
 public class CustomerController {
 
     private final CustomerRepository customerRepository;
+    private final CustomerTreatmentRepository customerTreatmentRepository;
+    private final CustomerProductRepository customerProductRepository;
 
-    public CustomerController(CustomerRepository customerRepository) {
+    public CustomerController(CustomerRepository customerRepository, CustomerTreatmentRepository customerTreatmentRepository, CustomerProductRepository customerProductRepository) {
         this.customerRepository = customerRepository;
+        this.customerTreatmentRepository = customerTreatmentRepository;
+        this.customerProductRepository = customerProductRepository;
     }
 
     @GetMapping("/form")
@@ -56,5 +65,32 @@ public class CustomerController {
         Customer foundCustomer = customer.orElseThrow(() -> new EntityNotFoundException("Customer not found"));
         model.addAttribute("customer", foundCustomer);
         return "customer/update";
+    }
+
+    @GetMapping("/findById/{id}")
+    @Transactional
+    public String findTreatmentsAndProductsByCustomerId(@PathVariable long id, Model model) {
+        Customer customer = customerRepository.getOne(id);
+        model.addAttribute("customer", customer);
+
+        List<CustomerTreatment> customerTreatments = customerTreatmentRepository.findAllByCustomerId(id);
+        List<CustomerProduct> customerProducts = customerProductRepository.findAllByCustomerId(id);
+
+        Hibernate.initialize(customer.getCustomerTreatments());
+        Hibernate.initialize(customer.getCustomerProducts());
+
+        if (customerTreatments.size() != 0) {
+            model.addAttribute("customerTreatments", customerTreatments);
+        } else {
+            model.addAttribute("customerTreatments", null);
+        }
+
+        if (customerProducts.size() != 0) {
+            model.addAttribute("customerProducts", customerProducts);
+        } else {
+            model.addAttribute("customerProducts", null);
+        }
+
+        return "customer/history";
     }
 }

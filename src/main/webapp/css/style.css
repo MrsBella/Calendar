@@ -43,7 +43,7 @@ h1 {
 .main-container {
     background: #a7b8c9;
     width: 50vw;
-    height: 35vw;
+    height: auto;
     margin: auto;
     padding-top: 1px;
     display: flex;
@@ -55,6 +55,7 @@ h1 {
     font-family: Purisa;
     width: 200px;
     margin: 0 auto;
+    margin-bottom: 40px;
 }
 
 p {

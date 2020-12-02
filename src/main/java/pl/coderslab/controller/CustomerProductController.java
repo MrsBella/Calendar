@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.entity.Customer;
 import pl.coderslab.entity.CustomerProduct;
@@ -45,10 +46,10 @@ public class CustomerProductController {
         return "user/hello";
     }
 
-    @GetMapping("/findById")
-    public String findProductsByCustomerId() {
+    @GetMapping("/findById/{id}")
+    public String findProductsByCustomerId(@PathVariable long id, Model model) {
 
-        List<CustomerProduct> customerProducts = customerProductRepository.findAllByCustomerId(2L);
+        List<CustomerProduct> customerProducts = customerProductRepository.findAllByCustomerId(id);
         System.out.println(customerProducts.size());
 
         return "user/hello";

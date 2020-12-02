@@ -40,6 +40,7 @@
         <table class="table">
             <thead>
             <th>Nazwa zabiegu</th>
+            <th>Cena</th>
             <th>Data wykonania</th>
             </thead>
             <tbody>
@@ -47,9 +48,29 @@
             <c:forEach items="${customerTreatments}" var="customerTreatment">
                 <tr>
                     <td>${customerTreatment.treatment.name}</td>
+                    <td>${customerTreatment.treatment.price}</td>
                     <td>${customerTreatment.localDateTime}</td>
                 </tr>
             </c:forEach>
+            </c:if>
+            </tbody>
+        </table>
+
+        <table class="table">
+            <thead>
+            <th>Nazwa produktu</th>
+            <th>Cena</th>
+            <th>Data sprzedaży</th>
+            </thead>
+            <tbody>
+            <c:if test="${not empty customerProducts}">
+                <c:forEach items="${customerProducts}" var="customerProduct">
+                    <tr>
+                        <td>${customerProduct.product.name}</td>
+                        <td>${customerProduct.product.price}</td>
+                        <td>${customerProduct.localDateTime}</td>
+                    </tr>
+                </c:forEach>
             </c:if>
             </tbody>
         </table>

@@ -35,7 +35,7 @@
                 <td>${customer.note}</td>
                 <th>
                     <a class="mr-3" href="/customer/form/${customer.id}">Edytuj</a>
-                    <a href="/customerTreatment/findById/${customer.id}">Pokaż</a>
+                    <a href="/customer/findById/${customer.id}">Pokaż</a>
                 </th>
             </tr>
         </c:forEach>
