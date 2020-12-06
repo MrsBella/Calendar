@@ -43,14 +43,19 @@ public class UserController {
             if (bindingResult.hasErrors()) {
                 return "user/form";
             } else {
-                user.setPassword(passwordEncoder.encode(user.getPassword()));
-                userRepository.save(user);
+                if (user.getPassword().equals(user.getRepeatPassword())) {
+                    user.setPassword(passwordEncoder.encode(user.getPassword()));
+                    userRepository.save(user);
+                } else {
+                    model.addAttribute("msg2", "Passwords do not match!");
+                    return "user/form";
+                }
             }
         } else {
             model.addAttribute("msg", "Email already exists!");
             return "user/form";
         }
-        return "user/hello";
+        return "redirect:/user/home";
     }
 
     @GetMapping("/form/{id}")
@@ -70,7 +75,6 @@ public class UserController {
 
     @PostMapping("/login")
     public String processLogin(User user, BindingResult bindingResult, Model model) {
-
         if (bindingResult.hasErrors()) {
             return "user/login";
         } else {

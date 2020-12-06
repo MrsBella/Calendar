@@ -46,6 +46,12 @@
             <form:errors path="email" cssClass="error"/>
         </div>
 
+        <c:if test="${not empty msg2}">
+            <div class="alert alert-danger" role="alert">
+                ${msg2}
+            </div>
+        </c:if>
+
         <div class="form-group row">
             <form:label class="col-2 col-form-label mr-1" path="password">Hasło: </form:label>
             <form:password path="password" class="col-9" placeholder="hasło"/> <br>
@@ -54,8 +60,8 @@
 
         <div class="form-group row">
             <form:label class="col-2 col-form-label mr-1" path="">Powtórz hasło: </form:label>
-            <form:password path="" class="col-9" placeholder="powtórz hasło"/> <br>
-            <form:errors path="" cssClass="error"/>
+            <form:password path="repeatPassword" class="col-9" placeholder="powtórz hasło"/> <br>
+            <form:errors path="repeatPassword" cssClass="error"/>
 
         </div>
         <button class="btn btn-lg main-button" type="submit">Zarejestruj</button>

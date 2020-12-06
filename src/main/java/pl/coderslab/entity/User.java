@@ -47,9 +47,9 @@ public class User {
     @NotNull
     private String password;
 
-//    @Transient
+    @Transient
 //    @NotNull(groups = User.class)
-//    private String repeatPassword;
+    private String repeatPassword;
 
     @Transient
     private boolean loggedIn = false;
@@ -133,13 +133,13 @@ public class User {
         this.password = password;
     }
 
-//    public String getRepeatPassword() {
-//        return repeatPassword;
-//    }
-//
-//    public void setRepeatPassword(String repeatPassword) {
-//        this.repeatPassword = repeatPassword;
-//    }
+    public String getRepeatPassword() {
+        return repeatPassword;
+    }
+
+    public void setRepeatPassword(String repeatPassword) {
+        this.repeatPassword = repeatPassword;
+    }
 
     public boolean isLoggedIn() {
         return loggedIn;
