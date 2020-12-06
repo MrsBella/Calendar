@@ -24,6 +24,9 @@ public class Treatment {
     @OneToMany(mappedBy = "treatment")
     private List<CustomerTreatment> customerTreatments = new ArrayList<>();
 
+    @ManyToOne
+    private User user;
+
     public Treatment() {
     }
 
@@ -71,5 +74,13 @@ public class Treatment {
 
     public void setCustomerTreatments(List<CustomerTreatment> customerTreatments) {
         this.customerTreatments = customerTreatments;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

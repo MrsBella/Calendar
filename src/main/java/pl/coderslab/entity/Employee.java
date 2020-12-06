@@ -21,6 +21,9 @@ public class Employee {
             inverseJoinColumns = @JoinColumn(name = "customer_id"))
     private List<Customer> customers = new ArrayList<>();
 
+    @ManyToOne
+    private User user;
+
     public Employee() {
     }
 
@@ -59,5 +62,13 @@ public class Employee {
 
     public void setCustomers(List<Customer> customers) {
         this.customers = customers;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

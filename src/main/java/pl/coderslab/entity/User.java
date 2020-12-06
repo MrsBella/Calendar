@@ -1,19 +1,23 @@
 package pl.coderslab.entity;
 
 import pl.coderslab.annotation.PasswordValueMatch;
+import pl.coderslab.repository.UserRepository;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
-@PasswordValueMatch.List({
-        @PasswordValueMatch(
-                field = "password",
-                fieldMatch = "repeatPassword",
-                message = "Passwords do not match!"
-        )
-})
+//@PasswordValueMatch.List({
+//        @PasswordValueMatch(
+//                field = "password",
+//                fieldMatch = "repeatPassword",
+//                message = "Passwords do not match!"
+//        )
+//})
 
 @Entity
 @Table(name = "users")
@@ -43,18 +47,39 @@ public class User {
     @NotNull
     private String password;
 
-    @Transient
-    private String repeatPassword;
+//    @Transient
+//    @NotNull(groups = User.class)
+//    private String repeatPassword;
 
     @Transient
     private boolean loggedIn = false;
 
-    public User(String firstName, String lastName, String companyName, String email, String password) {
+    @OneToMany
+    @JoinColumn(name = "user_id")
+    private List<Employee> employees = new ArrayList<>();
+
+    @OneToMany
+    @JoinColumn(name = "user_id")
+    private List<Customer> customers = new ArrayList<>();
+
+    @OneToMany
+    @JoinColumn(name = "user_id")
+    private List<Treatment> treatments = new ArrayList<>();
+
+    @OneToMany
+    @JoinColumn(name = "user_id")
+    private List<Product> products = new ArrayList<>();
+
+
+    public User(@NotNull @Size(min = 3, max = 60) String firstName, @NotNull @Size(min = 3, max = 60) String lastName,
+                @NotNull @Size(min = 2, max = 120) String companyName, @NotNull @Email String email, @Size(max = 60)
+                        String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.companyName = companyName;
         this.email = email;
         this.password = password;
+      //  this.repeatPassword = repeatPassword;
     }
 
     public User() {
@@ -108,13 +133,13 @@ public class User {
         this.password = password;
     }
 
-    public String getRepeatPassword() {
-        return repeatPassword;
-    }
-
-    public void setRepeatPassword(String repeatPassword) {
-        this.repeatPassword = repeatPassword;
-    }
+//    public String getRepeatPassword() {
+//        return repeatPassword;
+//    }
+//
+//    public void setRepeatPassword(String repeatPassword) {
+//        this.repeatPassword = repeatPassword;
+//    }
 
     public boolean isLoggedIn() {
         return loggedIn;
@@ -122,6 +147,38 @@ public class User {
 
     public void setLoggedIn(boolean loggedIn) {
         this.loggedIn = loggedIn;
+    }
+
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
+    }
+
+    public List<Customer> getCustomers() {
+        return customers;
+    }
+
+    public void setCustomers(List<Customer> customers) {
+        this.customers = customers;
+    }
+
+    public List<Treatment> getTreatments() {
+        return treatments;
+    }
+
+    public void setTreatments(List<Treatment> treatments) {
+        this.treatments = treatments;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 
     @Override

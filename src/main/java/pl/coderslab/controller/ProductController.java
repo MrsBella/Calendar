@@ -42,9 +42,9 @@ public class ProductController {
         return "redirect:/product/list";
     }
 
-    @GetMapping("/list")
-    public String list(Model model) {
-        List<Product> products = productRepository.findAll();
+    @GetMapping("/list/{id}")
+    public String list(@PathVariable Long id, Model model) {
+        List<Product> products = productRepository.findAllByUserId(id);
         model.addAttribute("products", products);
         return "product/list";
     }

@@ -54,8 +54,8 @@
 
         <div class="form-group row">
             <form:label class="col-2 col-form-label mr-1" path="">Powtórz hasło: </form:label>
-            <form:password path="repeatPassword" class="col-9" placeholder="powtórz hasło"/> <br>
-            <form:errors path="repeatPassword" cssClass="error"/>
+            <form:password path="" class="col-9" placeholder="powtórz hasło"/> <br>
+            <form:errors path="" cssClass="error"/>
 
         </div>
         <button class="btn btn-lg main-button" type="submit">Zarejestruj</button>

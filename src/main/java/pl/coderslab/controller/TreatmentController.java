@@ -42,9 +42,9 @@ public class TreatmentController {
         return "redirect:/treatment/list";
     }
 
-    @GetMapping("/list")
-    public String list(Model model) {
-        List<Treatment> treatments = treatmentRepository.findAll();
+    @GetMapping("/list/{id}")
+    public String list(@PathVariable Long id, Model model) {
+        List<Treatment> treatments = treatmentRepository.findAllByUserId(id);
         model.addAttribute("treatments", treatments);
         return "treatment/list";
     }

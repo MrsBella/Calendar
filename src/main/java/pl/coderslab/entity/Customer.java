@@ -35,6 +35,9 @@ public class Customer {
     @OneToMany(mappedBy = "customer")
     private List<CustomerProduct> customerProducts = new ArrayList<>();
 
+    @ManyToOne
+    private User user;
+
     public Customer() {
     }
 
@@ -118,5 +121,13 @@ public class Customer {
 
     public void setCustomerProducts(List<CustomerProduct> customerProducts) {
         this.customerProducts = customerProducts;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

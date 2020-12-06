@@ -51,9 +51,9 @@ public class CustomerController {
         return "redirect:/customer/list";
     }
 
-    @GetMapping("/list")
-    public String list(Model model) {
-        List<Customer> customers = customerRepository.findAll();
+    @GetMapping("/list/{id}")
+    public String list(@PathVariable Long id, Model model) {
+        List<Customer> customers = customerRepository.findAllByUserId(id);
         model.addAttribute("customers", customers);
         return "customer/list";
     }

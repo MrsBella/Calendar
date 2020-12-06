@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.entity.Customer;
 import pl.coderslab.entity.CustomerTreatment;
@@ -24,7 +25,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/customerTreatment")
 @Transactional
 public class CustomerTreatmentController {
 
@@ -39,20 +39,31 @@ public class CustomerTreatmentController {
         this.customerTreatmentRepository = customerTreatmentRepository;
     }
 
-    @GetMapping("/add")
-    public String add(Model model) {
-        model.addAttribute("customerTreatment", new CustomerTreatment());
+//    @GetMapping("/customerTreatment/add")
+//    public String add(Model model) {
+//        model.addAttribute("customerTreatment", new CustomerTreatment());
+//
+//        Customer customer = customerRepository.getOne(2L);
+//        Treatment treatment = treatmentRepository.getOne(4L);
+//        LocalDateTime localDateTime = LocalDateTime.now();
+//
+//        CustomerTreatment customerTreatment = new CustomerTreatment(customer, treatment, localDateTime);
+//        customerTreatmentRepository.save(customerTreatment);
+//        return "";
+//    }
 
-        Customer customer = customerRepository.getOne(2L);
-        Treatment treatment = treatmentRepository.getOne(4L);
-        LocalDateTime localDateTime = LocalDateTime.now();
+//    @GetMapping("user/home")
+//    public  String add(Model model) {
+//        model.addAttribute("customerTreatment", new CustomerTreatment());
+//        return "home/home";
+//    }
+//
+//    @PostMapping("user/home")
+//    public String processForm(Model model) {
+//        return "";
+//    }
 
-        CustomerTreatment customerTreatment = new CustomerTreatment(customer, treatment, localDateTime);
-        customerTreatmentRepository.save(customerTreatment);
-        return "user/hello";
-    }
-
-    @GetMapping("/findById/{id}")
+    @GetMapping("/customerTreatment/findById/{id}")
     @Transactional
     public String findTreatmentsByCustomerId(@PathVariable long id, Model model) {
         Customer customer = customerRepository.getOne(id);

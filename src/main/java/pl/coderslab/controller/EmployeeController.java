@@ -42,9 +42,9 @@ public class EmployeeController {
         return "redirect:/employee/list";
     }
 
-    @GetMapping("/list")
-    public String list(Model model) {
-        List<Employee> employees = employeeRepository.findAll();
+    @GetMapping("/list/{id}")
+    public String list(@PathVariable Long id, Model model) {
+        List<Employee> employees = employeeRepository.findAllByUserId(id);
         model.addAttribute("employees", employees);
         return "employee/list";
     }
