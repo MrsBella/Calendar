@@ -1,6 +1,5 @@
 package pl.coderslab.controller;
 
-import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -56,7 +55,7 @@ public class UserController {
 
     @PostMapping("/form")
     public String processForm(@Valid User user, BindingResult bindingResult, Model model) {
-        if ((userRepository.findByEmail(user.getEmail())) == null) {
+        if ((userRepository.findByEmail(user.getEmail())) == null || !(user.getEmail().equals(""))) {
             if (bindingResult.hasErrors()) {
                 return "user/form";
             } else {
@@ -69,7 +68,7 @@ public class UserController {
                 }
             }
         } else {
-            model.addAttribute("msg", "Email already exists!");
+            model.addAttribute("msg", "Email already exist or no email!");
             return "user/form";
         }
         return "redirect:/user/home";

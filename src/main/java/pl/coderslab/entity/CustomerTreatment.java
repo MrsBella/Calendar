@@ -1,6 +1,5 @@
 package pl.coderslab.entity;
 
-import org.hibernate.annotations.Proxy;
 import pl.coderslab.model.CustomerTreatmentId;
 
 import javax.persistence.*;

@@ -3,24 +3,14 @@ package pl.coderslab.entity;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.transaction.annotation.Transactional;
-import pl.coderslab.annotation.PasswordValueMatch;
 import pl.coderslab.repository.UserRepository;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
-
-//@PasswordValueMatch.List({
-//        @PasswordValueMatch(
-//                field = "password",
-//                fieldMatch = "repeatPassword",
-//                message = "Passwords do not match!"
-//        )
-//})
 
 @Entity
 @Table(name = "users")

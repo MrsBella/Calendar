@@ -68,24 +68,32 @@
             ],
             slotDuration: '00:15:00',
             firstDay: 1,
-            // dateClick: function(info) {
-            //     alert('Clicked on: ' + info.dateStr);
-            //     alert('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY);
-            //     alert('Current view: ' + info.view.type);
-            //     // change the day's background color just for fun
-            //     info.dayEl.style.backgroundColor = 'blue';
-            // }
+            dateClick: function(info) {
+                $('#visitModal').modal('show')
+
+                // console.log(info.date.getDate() + "-" + (info.date.getMonth() + 1) + "-" + info.date.getFullYear()
+                //     + " " + info.date.getHours() + ":" + info.date.getMinutes())
+
+                $('#date').text(info.date.getDate() + "-" + (info.date.getMonth() + 1) + "-" + info.date.getFullYear()
+                    + " " + info.date.getHours() + ":" + info.date.getMinutes())
+
+                // alert('Clicked on: ' + info.dateStr);
+                // alert('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY);
+                // alert('Current view: ' + info.view.type);
+                // change the day's background color just for fun
+                // info.dayEl.style.backgroundColor = 'blue';
+            }
         });
         calendar.render();
     });
 </script>
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-    modal wizyta
-</button>
+<%--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">--%>
+<%--    modal wizyta--%>
+<%--</button>--%>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="visitModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -98,6 +106,8 @@
 
                 <form:form action="user/home" modelAttribute="user">
                     <div class="form-group">
+                        <span id="date" ></span>
+                        <br>
                         <form:label path="customers">Klient: </form:label>
                         <select class="form-control" id="select">
                             <c:forEach items="${user.customers}" var="customer">
@@ -121,8 +131,10 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Wyjdź</button>
+                <button type="button" class="btn btn-primary">Zapisz</button>
+                <button type="button" class="btn btn-primary">Anuluj wizytę</button>
+                <button type="button" class="btn btn-primary">Zatwierdź</button>
             </div>
         </div>
     </div>
