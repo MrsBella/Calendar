@@ -1,5 +1,8 @@
 package pl.coderslab.entity;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+import org.springframework.transaction.annotation.Transactional;
 import pl.coderslab.annotation.PasswordValueMatch;
 import pl.coderslab.repository.UserRepository;
 
@@ -55,18 +58,22 @@ public class User {
     private boolean loggedIn = false;
 
     @OneToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
     @JoinColumn(name = "user_id")
     private List<Employee> employees = new ArrayList<>();
 
     @OneToMany
+    @LazyCollection (LazyCollectionOption.FALSE)
     @JoinColumn(name = "user_id")
     private List<Customer> customers = new ArrayList<>();
 
     @OneToMany
+    @LazyCollection (LazyCollectionOption.FALSE)
     @JoinColumn(name = "user_id")
     private List<Treatment> treatments = new ArrayList<>();
 
     @OneToMany
+    @LazyCollection (LazyCollectionOption.FALSE)
     @JoinColumn(name = "user_id")
     private List<Product> products = new ArrayList<>();
 
@@ -157,6 +164,7 @@ public class User {
         this.employees = employees;
     }
 
+    @Transactional
     public List<Customer> getCustomers() {
         return customers;
     }

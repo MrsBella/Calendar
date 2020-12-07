@@ -71,4 +71,8 @@ public class Employee {
     public void setUser(User user) {
         this.user = user;
     }
+
+    public String getFullName() {
+        return firstName + " " + lastName;
+    }
 }

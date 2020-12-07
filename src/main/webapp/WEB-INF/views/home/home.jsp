@@ -1,4 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ include file="/head.jsp" %>
 
@@ -55,12 +56,12 @@
             selectable: true,
             businessHours: [ // specify an array instead
                 {
-                    daysOfWeek: [ 1, 2, 3, 4, 5 ], // Monday, Tuesday, Wednesday
+                    daysOfWeek: [1, 2, 3, 4, 5], // Monday, Tuesday, Wednesday
                     startTime: '08:00', // 8am
                     endTime: '21:00' // 6pm
                 },
                 {
-                    daysOfWeek: [ 6 ], // Thursday, Friday
+                    daysOfWeek: [6], // Thursday, Friday
                     startTime: '9:00', // 10am
                     endTime: '15:00' // 4pm
                 }
@@ -80,7 +81,7 @@
 </script>
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-    Launch demo modal
+    modal wizyta
 </button>
 
 <!-- Modal -->
@@ -94,9 +95,30 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form:form action="user/home" modelAttribute="customerTreatment">
 
+                <form:form action="user/home" modelAttribute="user">
+                    <div class="form-group">
+                        <form:label path="customers">Klient: </form:label>
+                        <select class="form-control" id="select">
+                            <c:forEach items="${user.customers}" var="customer">
+                                <option>${customer.fullName}</option>
+                            </c:forEach>
+                        </select>
+                        <form:label path="employees">Pracownik: </form:label>
+                        <select class="form-control" id="select">
+                            <c:forEach items="${user.employees}" var="employee">
+                                <option>${employee.fullName}</option>
+                            </c:forEach>
+                        </select>
+                        <form:label path="treatments">Zabieg: </form:label>
+                        <select class="form-control" id="select">
+                            <c:forEach items="${user.treatments}" var="treatment">
+                                <option>${treatment.name}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
                 </form:form>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

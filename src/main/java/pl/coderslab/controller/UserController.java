@@ -1,5 +1,6 @@
 package pl.coderslab.controller;
 
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -8,12 +9,16 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import pl.coderslab.entity.Customer;
+import pl.coderslab.entity.CustomerTreatment;
 import pl.coderslab.entity.User;
+import pl.coderslab.repository.CustomerRepository;
 import pl.coderslab.repository.UserRepository;
 
 import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -23,13 +28,25 @@ import java.util.Optional;
 public class UserController {
 
     private final UserRepository userRepository;
+    private final CustomerRepository customerRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public UserController(UserRepository userRepository) {
+    public UserController(UserRepository userRepository, CustomerRepository customerRepository) {
         this.userRepository = userRepository;
+        this.customerRepository = customerRepository;
     }
+
+    @ModelAttribute("customers")
+    public List<Customer> customers() {
+        return customerRepository.findAll();
+    }
+
+//        @ModelAttribute("publisher")
+//    public List<Publisher> publishers() {
+//        return publisherDao.findAll();
+//    }
 
     @GetMapping("/form")
     public String form(Model model) {
@@ -99,11 +116,13 @@ public class UserController {
     }
 
     @GetMapping("/home")
-    public String home(HttpSession session) {
+    @Transactional
+    public String home(HttpSession session, Model model) {
 
         try {
             User user = (User) session.getAttribute("user");
             if (user.isLoggedIn()) {
+                model.addAttribute("user", user);
                 return "home/home";
             }
         } catch (NullPointerException e) {
@@ -111,5 +130,10 @@ public class UserController {
         }
 
         return "redirect:/user/login";
+    }
+
+    @PostMapping("user/home")
+    public String processForm(Model model) {
+        return "";
     }
 }
