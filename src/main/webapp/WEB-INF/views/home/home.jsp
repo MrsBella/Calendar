@@ -68,22 +68,20 @@
             ],
             slotDuration: '00:15:00',
             firstDay: 1,
-            dateClick: function(info) {
+            dateClick: function (info) {
                 $('#visitModal').modal('show')
-
-                // console.log(info.date.getDate() + "-" + (info.date.getMonth() + 1) + "-" + info.date.getFullYear()
-                //     + " " + info.date.getHours() + ":" + info.date.getMinutes())
-
                 $('#date').text(info.date.getDate() + "-" + (info.date.getMonth() + 1) + "-" + info.date.getFullYear()
                     + " " + info.date.getHours() + ":" + info.date.getMinutes())
-
-                // alert('Clicked on: ' + info.dateStr);
-                // alert('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY);
-                // alert('Current view: ' + info.view.type);
-                // change the day's background color just for fun
-                // info.dayEl.style.backgroundColor = 'blue';
-            }
-        });
+            },
+            eventSources: [
+                {
+                    url: '/api/calendar',
+                    method: 'GET',
+                    failure: function () {
+                        alert('Bład pobierania danych');
+                    },
+                }
+            ]        });
         calendar.render();
     });
 </script>
@@ -106,7 +104,7 @@
 
                 <form:form action="user/home" modelAttribute="user">
                     <div class="form-group">
-                        <span id="date" ></span>
+                        <span id="date"></span>
                         <br>
                         <form:label path="customers">Klient: </form:label>
                         <select class="form-control" id="select">

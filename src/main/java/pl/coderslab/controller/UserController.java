@@ -131,8 +131,10 @@ public class UserController {
         return "redirect:/user/login";
     }
 
-    @PostMapping("user/home")
+    @PostMapping("/home")
     public String processForm(Model model) {
         return "";
     }
+
+
 }
