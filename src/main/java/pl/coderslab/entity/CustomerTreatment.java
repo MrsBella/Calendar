@@ -54,4 +54,10 @@ public class CustomerTreatment {
     public void setLocalDateTime(LocalDateTime localDateTime) {
         this.localDateTime = localDateTime;
     }
+
+    @Override
+    public String toString() {
+        return "CustomerTreatment: customer: " + customer.getFullName() + "treatment: " + treatment.getName() + "localDateTime: "
+                + localDateTime + "\n";
+    }
 }
