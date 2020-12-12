@@ -41,14 +41,6 @@
 <div class="calendar-container">
     <div id='calendar'></div>
 </div>
-
-<!-- Button trigger modal -->
-<%--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">--%>
-<%--    modal wizyta--%>
-<%--</button>--%>
-
-<!-- Modal -->
-
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const calendarEl = document.getElementById('calendar');
@@ -101,17 +93,7 @@
                         }
                     });
                 })
-                // TODO Deleting from database
-                // $('DELETE_BUTON').click(function (){
-                //     SEND_DELETING
-                // });
-
             },
-            // TODO Event resize/ change datetime
-            // eventResize:{
-            //    SEND DATA CHANGED to backend and store it
-            // },
-            // TODO Event Editing data
             eventClick: function (event) {
 
                 const eventObject = event.event;
@@ -126,10 +108,10 @@
                 $('#treatmentId').val(parseInt(eventObject.extendedProps.treatmentId))
                 // $('#visitModal').modal('show')
                 showModal(visitId)
-                $('#end-'+visitId).show()
-                $('#delete-'+visitId).show()
+                $('#end-' + visitId).show()
+                $('#delete-' + visitId).show()
 
-                $('#save-'+visitId).click(function () {
+                $('#save-' + visitId).click(function () {
                     const data = $('#modalForm').serializeArray();
                     console.log(data)
                     $.ajax({
@@ -137,7 +119,7 @@
                         url: "/api/calendar/" + visitId,
                         data: data,
                         success: function (data) {
-                            $('#visitModal-'+visitId).modal('hide')
+                            $('#visitModal-' + visitId).modal('hide')
                             calendar.refetchEvents();
                         },
                         error: function (error) {
@@ -146,12 +128,12 @@
                     });
                 })
 
-                $('#delete-'+visitId).click(function () {
+                $('#delete-' + visitId).click(function () {
                     $.ajax({
                         type: "DELETE",
                         url: "/api/calendar/" + visitId,
                         success: function (data) {
-                            $('#visitModal-'+visitId).modal('hide')
+                            $('#visitModal-' + visitId).modal('hide')
                             calendar.refetchEvents();
                         },
                         error: function (error) {
@@ -160,12 +142,12 @@
                     })
                 })
 
-                $('#end-'+visitId).click(function () {
+                $('#end-' + visitId).click(function () {
                     $.ajax({
                         type: "PUT",
                         url: "/api/calendar/" + visitId + "/done",
                         success: function (data) {
-                            $('#visitModal-'+visitId).modal('hide')
+                            $('#visitModal-' + visitId).modal('hide')
                             calendar.refetchEvents();
                         },
                         error: function (error) {
@@ -173,7 +155,6 @@
                         }
                     })
                 })
-
             },
             eventSources: [
                 {
@@ -190,7 +171,7 @@
 
     function showModal(id) {
         const modal = $(`
-        <div class="modal fade" id="visitModal-`+id+`" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="visitModal-` + id + `" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -200,7 +181,6 @@
                 </button>
             </div>
             <div class="modal-body">
-
                 <form:form id="modalForm" action="user/home" modelAttribute="user">
                     <div class="form-group">
                         <input name="date" type="text" id="dateHidden" value="" hidden>
@@ -226,13 +206,12 @@
                         </select>
                     </div>
                 </form:form>
-
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Wyjdź</button>
-                <button type="button" class="btn btn-primary" id="save-`+id+`">Zapisz</button>
-                <button type="button" class="btn btn-primary" id="delete-`+id+`" style="display:none">Anuluj wizytę</button>
-                <button type="button" class="btn btn-primary" id="end-`+id+`" style="display:none">Zakończ</button>
+                <button type="button" class="btn btn-primary" id="save-` + id + `">Zapisz</button>
+                <button type="button" class="btn btn-primary" id="delete-` + id + `" style="display:none">Anuluj wizytę</button>
+                <button type="button" class="btn btn-primary" id="end-` + id + `" style="display:none">Zakończ</button>
             </div>
         </div>
     </div>
@@ -241,7 +220,6 @@
         $('#calendar').after(modal)
         modal.modal('show');
     }
-
 </script>
 </body>
 </html>

@@ -31,7 +31,8 @@ public class CustomerController {
     private final CustomerProductRepository customerProductRepository;
     private final VisitRepository visitRepository;
 
-    public CustomerController(CustomerRepository customerRepository, CustomerProductRepository customerProductRepository, VisitRepository visitRepository) {
+    public CustomerController(CustomerRepository customerRepository, CustomerProductRepository customerProductRepository,
+                              VisitRepository visitRepository) {
         this.customerRepository = customerRepository;
         this.customerProductRepository = customerProductRepository;
         this.visitRepository = visitRepository;

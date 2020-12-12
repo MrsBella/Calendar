@@ -32,9 +32,6 @@
             <th>
                 <a href="/product/form/${product.id}">Edytuj</a>
             </th>
-<%--            <th>--%>
-<%--                <a href="/product/confirm/${product.id}">Usuń</a>--%>
-<%--            </th>--%>
         </tr>
     </c:forEach>
     </tbody>

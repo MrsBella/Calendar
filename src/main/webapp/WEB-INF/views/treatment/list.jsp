@@ -31,11 +31,7 @@
                 <td>${treatment.description}</td>
                 <th>
                     <a class="mr-3" href="/treatment/form/${treatment.id}">Edytuj</a>
-<%--                    <a href="/treatment/confirm/${treatment.id}">Usuń</a>--%>
                 </th>
-<%--                <th>--%>
-<%--                    <a href="/treatment/confirm/${treatment.id}">Usuń</a>--%>
-<%--                </th>--%>
             </tr>
         </c:forEach>
         </tbody>

@@ -3,7 +3,6 @@ package pl.coderslab.entity;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.transaction.annotation.Transactional;
-import pl.coderslab.repository.UserRepository;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -41,7 +40,6 @@ public class User {
     private String password;
 
     @Transient
-//    @NotNull(groups = User.class)
     private String repeatPassword;
 
     @Transient
@@ -76,7 +74,6 @@ public class User {
         this.companyName = companyName;
         this.email = email;
         this.password = password;
-      //  this.repeatPassword = repeatPassword;
     }
 
     public User() {

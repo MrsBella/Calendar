@@ -26,12 +26,7 @@
                 <td>${employee.lastName}</td>
                 <th>
                     <a href="/employee/form/${employee.id}">Edytuj</a>
-<%--                    <a href="/employee/confirm/${employee.id}">Usuń</a>--%>
-
                 </th>
-<%--                <th>--%>
-<%--                    <a href="/employee/confirm/${employee.id}">Usuń</a>--%>
-<%--                </th>--%>
             </tr>
         </c:forEach>
     </table>
