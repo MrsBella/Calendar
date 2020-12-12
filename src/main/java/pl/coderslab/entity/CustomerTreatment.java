@@ -1,14 +1,20 @@
 package pl.coderslab.entity;
 
+import org.springframework.context.annotation.Primary;
 import pl.coderslab.model.CustomerTreatmentId;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "customers_treatments")
-@IdClass(CustomerTreatmentId.class)
-public class CustomerTreatment {
+@IdClass(CustomerTreatment.class)
+public class CustomerTreatment implements Serializable {
+
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private Long id;
 
     @Id
     @ManyToOne
@@ -30,6 +36,14 @@ public class CustomerTreatment {
         this.treatment = treatment;
         this.localDateTime = localDateTime;
     }
+//
+//    public Long getId() {
+//        return id;
+//    }
+//
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
 
     public Customer getCustomer() {
         return customer;

@@ -14,5 +14,7 @@ public interface CustomerTreatmentRepository extends JpaRepository<CustomerTreat
     @Query("SElECT ct FROM CustomerTreatment ct WHERE ct.localDateTime >= ?1 AND ct.localDateTime <= ?2")
     List<CustomerTreatment> findAllByDate(LocalDateTime start, LocalDateTime end);
 
+//    @Query("SELECT COUNT(ct) FROM CustomerTreatment ct")
+//    int cou
 }
 

@@ -41,6 +41,60 @@
 <div class="calendar-container">
     <div id='calendar'></div>
 </div>
+
+<!-- Button trigger modal -->
+<%--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">--%>
+<%--    modal wizyta--%>
+<%--</button>--%>
+
+<!-- Modal -->
+<div class="modal fade" id="visitModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Wizyta</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <form:form id="modalForm" action="user/home" modelAttribute="user">
+                    <div class="form-group">
+                        <input name="date" type="text" id="dateHidden" value="" hidden>
+                        <span id="date"></span>
+                        <br>
+                        <form:label path="customers">Klient: </form:label>
+                        <select class="form-control" id="customerId" name="customerId">
+                            <c:forEach items="${user.customers}" var="customer">
+                                <option value="${customer.id}">${customer.fullName}</option>
+                            </c:forEach>
+                        </select>
+                        <form:label path="employees">Pracownik: </form:label>
+                        <select class="form-control" id="employeeId" name="employeeId">
+                            <c:forEach items="${user.employees}" var="employee">
+                                <option value="${employee.id}">${employee.fullName}</option>
+                            </c:forEach>
+                        </select>
+                        <form:label path="treatments">Zabieg: </form:label>
+                        <select class="form-control" id="treatmentId" name="treatmentId">
+                            <c:forEach items="${user.treatments}" var="treatment">
+                                <option value="${treatment.id}">${treatment.name}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                </form:form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Wyjdź</button>
+                <button type="button" class="btn btn-primary" id="save">Zapisz</button>
+                <button type="button" class="btn btn-primary">Anuluj wizytę</button>
+                <button type="button" class="btn btn-primary">Zatwierdź</button>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const calendarEl = document.getElementById('calendar');
@@ -70,8 +124,29 @@
             firstDay: 1,
             dateClick: function (info) {
                 $('#visitModal').modal('show')
-                $('#date').text(info.date.getDate() + "-" + (info.date.getMonth() + 1) + "-" + info.date.getFullYear()
-                    + " " + info.date.getHours() + ":" + info.date.getMinutes())
+                const clickedDate = info.date.getDate() + "-" + (info.date.getMonth() + 1) + "-" + info.date.getFullYear()
+                    + " " + info.date.getHours() + ":" + info.date.getMinutes();
+                $('#date').text(clickedDate)
+                $('#dateHidden').val(info.dateStr)
+
+                $('#save').click(function () {
+
+                    const data = $('#modalForm').serializeArray();
+                    $.ajax({
+                        type: "POST",
+                        url: "/api/calendar",
+                        data: data,
+                        success: function (data) {
+                            $('#visitModal').modal('hide')
+                            calendar.refetchEvents();
+                        },
+                        error: function (error) {
+                            console.log(error)
+                        }
+                    });
+
+                })
+
             },
             eventSources: [
                 {
@@ -81,61 +156,11 @@
                         alert('Bład pobierania danych');
                     },
                 }
-            ]        });
+            ]
+        });
         calendar.render();
     });
+
 </script>
-<!-- Button trigger modal -->
-<%--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">--%>
-<%--    modal wizyta--%>
-<%--</button>--%>
-
-<!-- Modal -->
-<div class="modal fade" id="visitModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Wizyta</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-
-                <form:form action="user/home" modelAttribute="user">
-                    <div class="form-group">
-                        <span id="date"></span>
-                        <br>
-                        <form:label path="customers">Klient: </form:label>
-                        <select class="form-control" id="select">
-                            <c:forEach items="${user.customers}" var="customer">
-                                <option>${customer.fullName}</option>
-                            </c:forEach>
-                        </select>
-                        <form:label path="employees">Pracownik: </form:label>
-                        <select class="form-control" id="select">
-                            <c:forEach items="${user.employees}" var="employee">
-                                <option>${employee.fullName}</option>
-                            </c:forEach>
-                        </select>
-                        <form:label path="treatments">Zabieg: </form:label>
-                        <select class="form-control" id="select">
-                            <c:forEach items="${user.treatments}" var="treatment">
-                                <option>${treatment.name}</option>
-                            </c:forEach>
-                        </select>
-                    </div>
-                </form:form>
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Wyjdź</button>
-                <button type="button" class="btn btn-primary">Zapisz</button>
-                <button type="button" class="btn btn-primary">Anuluj wizytę</button>
-                <button type="button" class="btn btn-primary">Zatwierdź</button>
-            </div>
-        </div>
-    </div>
-</div>
 </body>
 </html>

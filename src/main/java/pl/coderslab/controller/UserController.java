@@ -59,7 +59,7 @@ public class UserController {
             if (bindingResult.hasErrors()) {
                 return "user/form";
             } else {
-                if (user.getPassword().equals(user.getRepeatPassword())) {
+                if (user.getPassword().equals(user.getRepeatPassword()) && !(user.getPassword().equals(""))) {
                     user.setPassword(passwordEncoder.encode(user.getPassword()));
                     userRepository.save(user);
                 } else {
@@ -131,10 +131,6 @@ public class UserController {
         return "redirect:/user/login";
     }
 
-    @PostMapping("/home")
-    public String processForm(Model model) {
-        return "";
-    }
 
 
 }
