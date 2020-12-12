@@ -75,8 +75,7 @@ public class CustomerController {
 
         List<Visit> visits = visitRepository.findAllByCustomerId(id);
         List<CustomerProduct> customerProducts = customerProductRepository.findAllByCustomerId(id);
-//
-//        Hibernate.initialize(customer.getCustomerTreatments());
+
         Hibernate.initialize(customer.getCustomerProducts());
 
         if (visits.size() != 0) {

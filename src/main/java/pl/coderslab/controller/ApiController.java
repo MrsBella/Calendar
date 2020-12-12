@@ -2,8 +2,6 @@ package pl.coderslab.controller;
 
 import org.joda.time.DateTime;
 import org.joda.time.format.ISODateTimeFormat;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.entity.*;
@@ -31,7 +29,6 @@ public class ApiController {
     }
 
     @GetMapping("/api/calendar")
-    //   @RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Map<String, String>> hello(@RequestParam String start, @RequestParam String end) {
 
         DateTime jodaDateStart = ISODateTimeFormat.dateTimeParser().parseDateTime(start);
