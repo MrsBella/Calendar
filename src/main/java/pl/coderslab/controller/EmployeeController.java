@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.entity.Employee;
+import pl.coderslab.entity.User;
 import pl.coderslab.repository.EmployeeRepository;
 
 import javax.persistence.EntityNotFoundException;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
@@ -33,13 +35,15 @@ public class EmployeeController {
     }
 
     @PostMapping("/form")
-    public String processForm(@Valid Employee employee, BindingResult bindingResult) {
+    public String processForm(@Valid Employee employee, BindingResult bindingResult, HttpSession session) {
+        User user = (User) session.getAttribute("user");
         if (bindingResult.hasErrors()) {
             return "employee/form";
         } else {
+            employee.setUser(user);
             employeeRepository.save(employee);
         }
-        return "redirect:/employee/list";
+        return "redirect:/employee/list/"  + user.getId();
     }
 
     @GetMapping("/list/{id}")

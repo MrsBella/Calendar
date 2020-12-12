@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.entity.Treatment;
+import pl.coderslab.entity.User;
 import pl.coderslab.repository.TreatmentRepository;
 
 import javax.persistence.EntityNotFoundException;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
@@ -33,13 +35,15 @@ public class TreatmentController {
     }
 
     @PostMapping("/form")
-    public String processForm(@Valid Treatment treatment, BindingResult bindingResult) {
+    public String processForm(@Valid Treatment treatment, BindingResult bindingResult, HttpSession session) {
+        User user = (User) session.getAttribute("user");
         if (bindingResult.hasErrors()) {
             return "treatment/form";
         } else {
+            treatment.setUser(user);
             treatmentRepository.save(treatment);
         }
-        return "redirect:/treatment/list";
+        return "redirect:/treatment/list/" + user.getId();
     }
 
     @GetMapping("/list/{id}")

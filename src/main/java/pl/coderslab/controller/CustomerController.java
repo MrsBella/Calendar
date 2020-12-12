@@ -11,12 +11,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.entity.Customer;
 import pl.coderslab.entity.CustomerProduct;
+import pl.coderslab.entity.User;
 import pl.coderslab.entity.Visit;
 import pl.coderslab.repository.CustomerProductRepository;
 import pl.coderslab.repository.CustomerRepository;
 import pl.coderslab.repository.VisitRepository;
 
 import javax.persistence.EntityNotFoundException;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
@@ -42,13 +44,15 @@ public class CustomerController {
     }
 
     @PostMapping("/form")
-    public String processForm(@Valid Customer customer, BindingResult bindingResult) {
+    public String processForm(@Valid Customer customer, BindingResult bindingResult, HttpSession session) {
+        User user = (User) session.getAttribute("user");
         if (bindingResult.hasErrors()) {
             return "customer/form";
         } else {
+            customer.setUser(user);
             customerRepository.save(customer);
         }
-        return "redirect:/customer/list";
+        return "redirect:/customer/list/" + user.getId();
     }
 
     @GetMapping("/list/{id}")

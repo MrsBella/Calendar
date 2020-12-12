@@ -41,11 +41,6 @@ public class UserController {
         return customerRepository.findAll();
     }
 
-//        @ModelAttribute("publisher")
-//    public List<Publisher> publishers() {
-//        return publisherDao.findAll();
-//    }
-
     @GetMapping("/form")
     public String form(Model model) {
         model.addAttribute("user", new User());
@@ -54,7 +49,7 @@ public class UserController {
 
     @PostMapping("/form")
     public String processForm(@Valid User user, BindingResult bindingResult, Model model) {
-        if ((userRepository.findByEmail(user.getEmail())) == null || !(user.getEmail().equals(""))) {
+        if ((userRepository.findByEmail(user.getEmail())) == null && !(user.getEmail().equals(""))) {
             if (bindingResult.hasErrors()) {
                 return "user/form";
             } else {

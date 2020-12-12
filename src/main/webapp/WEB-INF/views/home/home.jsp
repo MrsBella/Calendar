@@ -4,12 +4,12 @@
 <%@ include file="/head.jsp" %>
 
 <body>
-<%--<pre>--%>
-<%--    ${user}--%>
-<%--    ${user.id}--%>
-<%--    sesja:--%>
-<%--    ${sessionScope}--%>
-<%--</pre>--%>
+<pre>
+    ${user}
+    ${user.id}
+    sesja:
+    ${sessionScope}
+</pre>
 <nav>
     <h1>Calendar</h1>
     <ul class="menu pt-4">

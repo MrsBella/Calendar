@@ -11,6 +11,6 @@ public interface VisitRepository extends JpaRepository<Visit, Long> {
 
     List<Visit> findAllByCustomerId(Long id);
 
-    @Query("SElECT v FROM Visit v WHERE v.startDate >= ?1 AND v.endDate <= ?2")
-    List<Visit> findAllByDate(LocalDateTime start, LocalDateTime end);
+    @Query("SElECT v FROM Visit v WHERE v.startDate >= ?1 AND v.endDate <= ?2 AND v.customer.user.id = ?3")
+    List<Visit> findAllByDate(LocalDateTime start, LocalDateTime end, Long id);
 }

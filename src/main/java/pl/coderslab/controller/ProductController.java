@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.entity.Product;
+import pl.coderslab.entity.User;
 import pl.coderslab.repository.ProductRepository;
 
 import javax.persistence.EntityNotFoundException;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
@@ -33,13 +35,15 @@ public class ProductController {
     }
 
     @PostMapping("/form")
-    public String processForm(@Valid Product product, BindingResult bindingResult) {
+    public String processForm(@Valid Product product, BindingResult bindingResult, HttpSession session) {
+        User user = (User) session.getAttribute("user");
         if (bindingResult.hasErrors()) {
             return "product/form";
         } else {
+            product.setUser(user);
             productRepository.save(product);
         }
-        return "redirect:/product/list";
+        return "redirect:/product/list/" + user.getId();
     }
 
     @GetMapping("/list/{id}")

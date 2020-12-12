@@ -8,6 +8,7 @@ import pl.coderslab.entity.*;
 import pl.coderslab.repository.*;
 
 import javax.persistence.EntityNotFoundException;
+import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -29,7 +30,7 @@ public class ApiController {
     }
 
     @GetMapping("/api/calendar")
-    public List<Map<String, String>> hello(@RequestParam String start, @RequestParam String end) {
+    public List<Map<String, String>> hello(@RequestParam String start, @RequestParam String end, HttpSession session) {
 
         DateTime jodaDateStart = ISODateTimeFormat.dateTimeParser().parseDateTime(start);
         DateTime dateEnd = ISODateTimeFormat.dateTimeParser().parseDateTime(end);
@@ -42,8 +43,10 @@ public class ApiController {
         LocalDateTime localDateTimeEnd = LocalDateTime.of(dateEnd.getYear(), dateEnd.getMonthOfYear(),
                 dateEnd.getDayOfMonth(), dateEnd.getHourOfDay(), dateEnd.getMinuteOfHour(), dateEnd.getSecondOfMinute());
 
+        User user = (User) session.getAttribute("user");
+
         List<Visit> visits = visitRepository.findAllByDate(localDateTimeStart,
-                localDateTimeEnd);
+                localDateTimeEnd, user.getId());
 
         List<Map<String, String>> mapList = new ArrayList<>();
 

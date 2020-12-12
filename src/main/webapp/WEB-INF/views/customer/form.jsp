@@ -5,7 +5,7 @@
 <body>
 <nav>
     <h1>Calendar</h1>
-    <a href="/customer/list">
+    <a href="/customer/list/${user.id}">
         <button class="btn btn-lg main-button mt-4 mr-3">Powrót</button>
     </a>
 </nav>
