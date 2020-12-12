@@ -89,8 +89,8 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Wyjdź</button>
                 <button type="button" class="btn btn-primary" id="save">Zapisz</button>
-                <button type="button" class="btn btn-primary">Anuluj wizytę</button>
-                <button type="button" class="btn btn-primary">Zatwierdź</button>
+                <button type="button" class="btn btn-primary" id="delete" style="display:none">Anuluj wizytę</button>
+                <button type="button" class="btn btn-primary" id="end" style="display:none">Zakończ</button>
             </div>
         </div>
     </div>
@@ -123,6 +123,8 @@
             slotDuration: '00:15:00',
             firstDay: 1,
             dateClick: function (info) {
+                $('#end').hide()
+                $('#delete').hide()
                 $('#visitModal').modal('show')
                 const clickedDate = info.date.getDate() + "-" + (info.date.getMonth() + 1) + "-" + info.date.getFullYear()
                     + " " + info.date.getHours() + ":" + info.date.getMinutes();
@@ -130,8 +132,8 @@
                 $('#dateHidden').val(info.dateStr)
 
                 $('#save').click(function () {
-
                     const data = $('#modalForm').serializeArray();
+                    console.log(data)
                     $.ajax({
                         type: "POST",
                         url: "/api/calendar",
@@ -144,7 +146,78 @@
                             console.log(error)
                         }
                     });
+                })
+                // TODO Deleting from database
+                // $('DELETE_BUTON').click(function (){
+                //     SEND_DELETING
+                // });
 
+            },
+            // TODO Event resize/ change datetime
+            // eventResize:{
+            //    SEND DATA CHANGED to backend and store it
+            // },
+            // TODO Event Editing data
+            eventClick: function (event) {
+
+                const eventObject = event.event;
+
+                console.log(eventObject)
+
+                $('#date').text(eventObject.start.toLocaleString())
+                $('#dateHidden').val(eventObject.start)
+                $('#customerId').val(parseInt(eventObject.extendedProps.customerId))
+                $('#employeeId').val(parseInt(eventObject.extendedProps.employeeId))
+                $('#treatmentId').val(parseInt(eventObject.extendedProps.treatmentId))
+                $('#visitModal').modal('show')
+                $('#end').show()
+                $('#delete').show()
+
+                const visitId = eventObject.extendedProps.visitId;
+
+                $('#save').click(function () {
+                    const data = $('#modalForm').serializeArray();
+                    console.log(data)
+                    $.ajax({
+                        type: "POST",
+                        url: "/api/calendar/" + visitId,
+                        data: data,
+                        success: function (data) {
+                            $('#visitModal').modal('hide')
+                            calendar.refetchEvents();
+                        },
+                        error: function (error) {
+                            console.log(error)
+                        }
+                    });
+                })
+
+                $('#delete').click(function () {
+                    $.ajax({
+                        type: "DELETE",
+                        url: "/api/calendar/" + visitId,
+                        success: function (data) {
+                            $('#visitModal').modal('hide')
+                            calendar.refetchEvents();
+                        },
+                        error: function (error) {
+                            console.log(error)
+                        }
+                    })
+                })
+
+                $('#end').click(function () {
+                    $.ajax({
+                        type: "PUT",
+                        url: "/api/calendar/" + visitId + "/done",
+                        success: function (data) {
+                            $('#visitModal').modal('hide')
+                            calendar.refetchEvents();
+                        },
+                        error: function (error) {
+                            console.log(error)
+                        }
+                    })
                 })
 
             },

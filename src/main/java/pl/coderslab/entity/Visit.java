@@ -21,9 +21,15 @@ public class Visit {
     @JoinColumn(name = "treatment_id")
     private Treatment treatment;
 
+    @ManyToOne
+    @JoinColumn(name = "employee_id")
+    private Employee employee;
+
     @JsonFormat(timezone = "Europe/Warsaw")
     private LocalDateTime startDate;
     private LocalDateTime endDate;
+
+    private boolean isDone;
 
     public Long getId() {
         return id;
@@ -65,11 +71,28 @@ public class Visit {
         this.endDate = endDate;
     }
 
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    public boolean isDone() {
+        return isDone;
+    }
+
+    public void setDone(boolean done) {
+        isDone = done;
+    }
+
     @Override
     public String toString() {
         return "Visit{" +
                 "customer=" + customer +
                 ", treatment=" + treatment +
+                ", employee=" + employee +
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +
                 '}';

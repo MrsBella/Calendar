@@ -44,12 +44,12 @@
             <th>Data wykonania</th>
             </thead>
             <tbody>
-            <c:if test="${not empty customerTreatments}">
-            <c:forEach items="${customerTreatments}" var="customerTreatment">
+            <c:if test="${not empty visits}">
+            <c:forEach items="${visits}" var="visit">
                 <tr>
-                    <td>${customerTreatment.treatment.name}</td>
-                    <td>${customerTreatment.treatment.price}</td>
-                    <td>${customerTreatment.localDateTime}</td>
+                    <td>${visit.treatment.name}</td>
+                    <td>${visit.treatment.price}</td>
+                    <td>${visit.startDate}</td>
                 </tr>
             </c:forEach>
             </c:if>

@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.entity.Customer;
-import pl.coderslab.entity.CustomerTreatment;
 import pl.coderslab.entity.User;
 import pl.coderslab.repository.CustomerRepository;
 import pl.coderslab.repository.UserRepository;

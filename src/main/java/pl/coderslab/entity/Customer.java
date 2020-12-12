@@ -30,9 +30,6 @@ public class Customer {
     private List<Employee> employees = new ArrayList<>();
 
     @OneToMany(mappedBy = "customer")
-    private List<CustomerTreatment> customerTreatments = new ArrayList<>();
-
-    @OneToMany(mappedBy = "customer")
     private List<CustomerProduct> customerProducts = new ArrayList<>();
 
     @ManyToOne
@@ -105,14 +102,6 @@ public class Customer {
 
     public void setEmployees(List<Employee> employees) {
         this.employees = employees;
-    }
-
-    public List<CustomerTreatment> getCustomerTreatments() {
-        return customerTreatments;
-    }
-
-    public void setCustomerTreatments(List<CustomerTreatment> customerTreatments) {
-        this.customerTreatments = customerTreatments;
     }
 
     public List<CustomerProduct> getCustomerProducts() {

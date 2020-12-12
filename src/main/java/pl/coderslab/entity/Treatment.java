@@ -21,9 +21,6 @@ public class Treatment {
 
     private String description;
 
-    @OneToMany(mappedBy = "treatment")
-    private List<CustomerTreatment> customerTreatments = new ArrayList<>();
-
     @ManyToOne
     private User user;
 
@@ -68,13 +65,6 @@ public class Treatment {
         this.description = description;
     }
 
-    public List<CustomerTreatment> getCustomerTreatments() {
-        return customerTreatments;
-    }
-
-    public void setCustomerTreatments(List<CustomerTreatment> customerTreatments) {
-        this.customerTreatments = customerTreatments;
-    }
 
     public User getUser() {
         return user;

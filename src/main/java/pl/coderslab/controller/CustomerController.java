@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.entity.Customer;
 import pl.coderslab.entity.CustomerProduct;
-import pl.coderslab.entity.CustomerTreatment;
+import pl.coderslab.entity.Visit;
 import pl.coderslab.repository.CustomerProductRepository;
 import pl.coderslab.repository.CustomerRepository;
-import pl.coderslab.repository.CustomerTreatmentRepository;
+import pl.coderslab.repository.VisitRepository;
 
 import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
@@ -26,13 +26,13 @@ import java.util.Optional;
 public class CustomerController {
 
     private final CustomerRepository customerRepository;
-    private final CustomerTreatmentRepository customerTreatmentRepository;
     private final CustomerProductRepository customerProductRepository;
+    private final VisitRepository visitRepository;
 
-    public CustomerController(CustomerRepository customerRepository, CustomerTreatmentRepository customerTreatmentRepository, CustomerProductRepository customerProductRepository) {
+    public CustomerController(CustomerRepository customerRepository, CustomerProductRepository customerProductRepository, VisitRepository visitRepository) {
         this.customerRepository = customerRepository;
-        this.customerTreatmentRepository = customerTreatmentRepository;
         this.customerProductRepository = customerProductRepository;
+        this.visitRepository = visitRepository;
     }
 
     @GetMapping("/form")
@@ -73,16 +73,16 @@ public class CustomerController {
         Customer customer = customerRepository.getOne(id);
         model.addAttribute("customer", customer);
 
-        List<CustomerTreatment> customerTreatments = customerTreatmentRepository.findAllByCustomerId(id);
+        List<Visit> visits = visitRepository.findAllByCustomerId(id);
         List<CustomerProduct> customerProducts = customerProductRepository.findAllByCustomerId(id);
-
-        Hibernate.initialize(customer.getCustomerTreatments());
+//
+//        Hibernate.initialize(customer.getCustomerTreatments());
         Hibernate.initialize(customer.getCustomerProducts());
 
-        if (customerTreatments.size() != 0) {
-            model.addAttribute("customerTreatments", customerTreatments);
+        if (visits.size() != 0) {
+            model.addAttribute("visits", visits);
         } else {
-            model.addAttribute("customerTreatments", null);
+            model.addAttribute("visits", null);
         }
 
         if (customerProducts.size() != 0) {
